@@ -117,7 +117,7 @@ public class VehicleControlFragment extends Fragment {
             switch (v.getId()){
                 case R.id.go_forward:
                     if(event.getAction() == MotionEvent.ACTION_DOWN){
-                        sendCmd("goforward");
+                        sendCmd("forward");
                         Snackbar.make(v,"发送前进指令",Snackbar.LENGTH_SHORT).show();
                     }else if(event.getAction() == MotionEvent.ACTION_UP){
                         sendCmd("stop");
@@ -126,7 +126,7 @@ public class VehicleControlFragment extends Fragment {
                     break;
                 case R.id.go_backward:
                     if(event.getAction() == MotionEvent.ACTION_DOWN){
-                        sendCmd("gobackward");
+                        sendCmd("backward");
                         Snackbar.make(v,"发送后退指令",Snackbar.LENGTH_SHORT).show();
                     }else if(event.getAction() == MotionEvent.ACTION_UP){
                         sendCmd("stop");
