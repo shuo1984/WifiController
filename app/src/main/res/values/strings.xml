@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">智能硬件遥控器</string>
+
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="vehicle">智能小车遥控器</string>
+</resources>

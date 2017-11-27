@@ -1,0 +1,111 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ctsms.wificontroller.fragement.VehicleControlFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:text="@string/vehicle" />
+
+        <LinearLayout
+            android:id="@+id/ip_layout"
+            android:layout_below="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/ip_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="http://"/>
+
+            <EditText
+                android:id="@+id/ip_addr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@+id/title"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/go_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ip_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="前进"/>
+
+
+        <Button
+            android:id="@+id/go_backward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/turn_left"
+            android:layout_centerHorizontal="true"
+
+            android:text="后退"/>
+
+        <Button
+            android:id="@+id/turn_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/go_forward"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@+id/go_forward"
+            android:text="左转"/>
+
+
+        <Button
+            android:id="@+id/turn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/go_forward"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/go_forward"
+            android:text="右转"/>
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/go_forward"
+            android:layout_toRightOf="@+id/turn_left"
+            android:text="停止"/>
+
+        <Button
+            android:id="@+id/turn_light_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/go_backward"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:text="打开车灯"/>
+
+        <Button
+            android:id="@+id/turn_light_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/turn_light_on"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:text="关闭车灯"/>
+    </RelativeLayout>
+
+
+</FrameLayout>
