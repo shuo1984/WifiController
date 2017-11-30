@@ -3,9 +3,11 @@
     <string-array name="item_title">
         <item>智能小车</item>
         <item>设置</item>
+        <item>关于</item>
         <item>退出</item>
     </string-array>
     <integer-array name="item_icon_res">
+        <item>@drawable/android_list_idex</item>
         <item>@drawable/android_list_idex</item>
         <item>@drawable/android_list_idex</item>
     </integer-array>

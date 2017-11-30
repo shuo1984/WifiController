@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.ctsms.wificontroller">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:name="cn.ctsms.wificontroller.IApplication"
         android:allowBackup="true"

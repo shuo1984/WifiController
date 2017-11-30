@@ -12,7 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import cn.ctsms.wificontroller.R;
+import cn.ctsms.wificontroller.fragement.AboutFragment;
+import cn.ctsms.wificontroller.fragement.SettingsFragment;
 import cn.ctsms.wificontroller.fragement.VehicleControlFragment;
 import cn.ctsms.wificontroller.fragement.NavigationDrawerFragment;
 
@@ -20,11 +25,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     private Toolbar toolbar;
     private Context context;
-
+    private TextView appbarTitle;
     private ActionBarDrawerToggle mDrawerToggle;         //定义toolbar左上角的弹出左侧菜单按钮
     private DrawerLayout drawer_main;                    //定义左侧滑动布局，其实就是主布局
 
-    private VehicleControlFragment vehicleControlFragment;                     //定义首页fragment
+    private VehicleControlFragment vehicleControlFragment;    //定义智能小车fragment
+    private AboutFragment aboutFragment;
+    private SettingsFragment settingsFragment;
     private Fragment isFragment;                         //记录当前正在使用的fragment
 
 
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationIcon(R.mipmap.ic_calling_contact_info);
+        appbarTitle = (TextView)findViewById(R.id.toolbar_title);
         //添加菜单点击事件
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +115,23 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 ftransaction.commit();
                 break;
             case "设置":
-
+                fmanager = getSupportFragmentManager();
+                ftransaction = fmanager.beginTransaction();
+                if(settingsFragment==null) {
+                    settingsFragment = new SettingsFragment();
+                }
+                ftransaction.replace(R.id.frame_main, settingsFragment);
+                ftransaction.commit();
                 break;
-
+            case "关于":
+                fmanager = getSupportFragmentManager();
+                ftransaction = fmanager.beginTransaction();
+                if(aboutFragment==null) {
+                    aboutFragment = new AboutFragment();
+                }
+                ftransaction.replace(R.id.frame_main, aboutFragment);
+                ftransaction.commit();
+                break;
             case "退出" :
                 android.os.Process.killProcess(android.os.Process.myPid());    //获取PID
                 System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
@@ -123,5 +145,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
          * 关闭左侧滑出菜单
          */
         drawer_main.closeDrawers();
+    }
+
+    public void setAppbarTitle(String title){
+        appbarTitle.setText(title);
     }
 }
