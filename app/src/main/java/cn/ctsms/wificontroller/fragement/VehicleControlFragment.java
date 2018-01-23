@@ -200,10 +200,12 @@ public class VehicleControlFragment extends Fragment {
             switch (v.getId()){
 
                 case R.id.turn_light_on:
-                    Snackbar.make(v,"打开车灯指令",Snackbar.LENGTH_SHORT).show();
+                    sendCmdApache("lighton");
+                    Snackbar.make(v,"打开前车灯指令",Snackbar.LENGTH_SHORT).show();
                     break;
                 case R.id.turn_light_off:
-                    Snackbar.make(v,"关闭车灯指令",Snackbar.LENGTH_SHORT).show();
+                    sendCmdApache("lightoff");
+                    Snackbar.make(v,"关闭前车灯指令",Snackbar.LENGTH_SHORT).show();
                     break;
                 default:
 
