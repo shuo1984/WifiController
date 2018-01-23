@@ -17,19 +17,22 @@
             android:layout_margin="20dp"
             android:text="@string/vehicle" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ip_layout"
             android:layout_below="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:orientation="horizontal">
+
+            >
             <TextView
                 android:id="@+id/ip_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:textSize="20sp"
+                android:layout_centerVertical="true"
                 android:text="http://"/>
 
             <EditText
@@ -37,8 +40,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:layout_below="@+id/title"/>
-        </LinearLayout>
+                android:layout_toLeftOf="@+id/obtain_ip"
+                android:layout_toRightOf="@+id/ip_prompt"
+                android:singleLine="true"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取最新ip"
+                android:id="@+id/obtain_ip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+               />
+        </RelativeLayout>
 
 
         <Button

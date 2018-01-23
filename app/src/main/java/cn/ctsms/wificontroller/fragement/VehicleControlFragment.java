@@ -22,11 +22,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import cn.ctsms.wificontroller.R;
 import cn.ctsms.wificontroller.activity.MainActivity;
+import cn.ctsms.wificontroller.model.Device;
 import cn.ctsms.wificontroller.utils.DataFormat;
 import cn.ctsms.wificontroller.utils.StringUtils;
+import cn.ctsms.wificontroller.utils.net.BasicNameValuePair;
 import cn.ctsms.wificontroller.utils.net.Closure;
 import cn.ctsms.wificontroller.utils.net.HTTPMethod;
 import cn.ctsms.wificontroller.utils.net.HTTPParams;
@@ -39,6 +42,7 @@ public class VehicleControlFragment extends Fragment {
 
 
     private Button btnForward,btnBackward,btnTurnLeft,btnTurnRight,btnTurnLightON,btnTurnLightOff;
+    private Button obtainIP;
     private EditText inputIP;
     private static final String ipPrefix = "http://";
     private Handler handler;
@@ -68,6 +72,7 @@ public class VehicleControlFragment extends Fragment {
         btnTurnLightON = (Button)view.findViewById(R.id.turn_light_on);
         btnTurnLightOff = (Button)view.findViewById(R.id.turn_light_off);
         inputIP = (EditText)view.findViewById(R.id.ip_addr);
+        obtainIP = (Button)view.findViewById(R.id.obtain_ip);
         setupListeners();
     }
 
@@ -85,6 +90,8 @@ public class VehicleControlFragment extends Fragment {
         btnTurnLightON.setOnClickListener(listener);
 
         btnTurnLightOff.setOnClickListener(listener);
+
+        obtainIP.setOnClickListener(listener);
 
     }
 
@@ -145,7 +152,45 @@ public class VehicleControlFragment extends Fragment {
         }.execute();
     }
 
+    private void obtainIP(){
+            new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] objects) {
+                    final String[] ip = {null};
+                    HTTPParams params = new HTTPParams(HTTPMethod.POST,DataFormat.Normal);
+                    params.addRequestParam(new BasicNameValuePair("device", Device.Vehical.toString()));
+                    HttpHelper.sendHttpRequest("http://api.ctsms.cn/api/smartdevices/getDeviceIp.php", params, new Closure() {
+                        @Override
+                        public void execute(Object input) {
+                            try {
+                                if (input != null) {
+                                    String result = input.toString();
+                                    JSONObject jo = new JSONObject(result);
+                                    int resCode = jo.getInt("res_code");
+                                    if(resCode == 0) {
+                                        ip[0] = jo.getString("ip");
+                                    }
 
+                                }
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    return ip;
+                }
+
+                @Override
+                protected void onPostExecute(Object o) {
+                    if(o!=null){
+                        String[] ip = (String[])o;
+                        if(ip.length>0 && ip[0]!=null){
+                            inputIP.setText(ip[0]);
+                        }
+                    }
+                }
+            }.execute();
+    }
 
     private class ControllerListener implements View.OnClickListener, View.OnTouchListener{
 
@@ -206,6 +251,9 @@ public class VehicleControlFragment extends Fragment {
                 case R.id.turn_light_off:
                     sendCmdApache("lightoff");
                     Snackbar.make(v,"关闭前车灯指令",Snackbar.LENGTH_SHORT).show();
+                    break;
+                case R.id.obtain_ip:
+                    obtainIP();
                     break;
                 default:
 
