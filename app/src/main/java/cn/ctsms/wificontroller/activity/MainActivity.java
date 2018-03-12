@@ -1,6 +1,5 @@
 package cn.ctsms.wificontroller.activity;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -12,11 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import cn.ctsms.wificontroller.R;
 import cn.ctsms.wificontroller.fragement.AboutFragment;
+import cn.ctsms.wificontroller.fragement.PumpFragment;
 import cn.ctsms.wificontroller.fragement.SettingsFragment;
 import cn.ctsms.wificontroller.fragement.VehicleControlFragment;
 import cn.ctsms.wificontroller.fragement.NavigationDrawerFragment;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private DrawerLayout drawer_main;                    //定义左侧滑动布局，其实就是主布局
 
     private VehicleControlFragment vehicleControlFragment;    //定义智能小车fragment
+    private PumpFragment pumpFragment;                   //定义充气泵fragment
     private AboutFragment aboutFragment;
     private SettingsFragment settingsFragment;
     private Fragment isFragment;                         //记录当前正在使用的fragment
@@ -101,10 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         switch (menuName)
         {
             case "智能小车" :
-                /*if(contentListFragment!=null) {
-                    contentListFragment = new ContentListFragment();
-                }
-                switchContent(isFragment,contentListFragment);*/
 
                 FragmentManager fmanager = getSupportFragmentManager();
                 FragmentTransaction ftransaction = fmanager.beginTransaction();
@@ -112,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     vehicleControlFragment = new VehicleControlFragment();
                 }
                 ftransaction.replace(R.id.frame_main, vehicleControlFragment);
+                ftransaction.commit();
+                break;
+            case "智能充气泵":
+                fmanager = getSupportFragmentManager();
+                ftransaction = fmanager.beginTransaction();
+                if(pumpFragment ==null) {
+                    pumpFragment = new PumpFragment();
+                }
+                ftransaction.replace(R.id.frame_main, pumpFragment);
                 ftransaction.commit();
                 break;
             case "设置":

@@ -2,6 +2,7 @@
 <resources>
     <string-array name="item_title">
         <item>智能小车</item>
+        <item>智能充气泵</item>
         <item>设置</item>
         <item>关于</item>
         <item>退出</item>

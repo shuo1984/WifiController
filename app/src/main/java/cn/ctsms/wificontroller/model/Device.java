@@ -7,7 +7,8 @@ package cn.ctsms.wificontroller.model;
 public enum Device {
 
     Vehical(0,"vehicle"),
-    Fan(1,"fan");
+    Fan(1,"fan"),
+    Pump(2,"pump");
 
     private int code;
     private String desc;

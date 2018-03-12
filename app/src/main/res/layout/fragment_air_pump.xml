@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ctsms.wificontroller.fragement.PumpFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:text="@string/air_pump" />
+
+        <RelativeLayout
+            android:id="@+id/ip_layout"
+            android:layout_below="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+
+            >
+            <TextView
+                android:id="@+id/ip_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:text="http://"/>
+
+            <EditText
+                android:id="@+id/ip_addr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_toLeftOf="@+id/obtain_ip"
+                android:layout_toRightOf="@+id/ip_prompt"
+                android:singleLine="true"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取最新ip"
+                android:id="@+id/obtain_ip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/operation_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/ip_layout"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="50dp">
+            <Button
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="启动"/>
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="停止"/>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
